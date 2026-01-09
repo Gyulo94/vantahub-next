@@ -1,38 +1,43 @@
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { SIDEBAR_ITEMS } from "@/lib/constants";
+import { LOGO, SIDEBAR_ITEMS } from "@/lib/constants";
 import { useOpenMenuStore } from "@/lib/stores";
-import Link from "next/link";
+import SidebarItem from "./sidebar-item";
+import Image from "next/image";
 
 export default function SidebarSheet() {
   const { isOpen, onClose } = useOpenMenuStore();
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent side="left">
-        <SheetHeader className="border-b-2">
+      <SheetContent side="left" className="w-full max-w-70! bg-background/95">
+        <SheetHeader className="border-b-2 flex-row items-center">
+          <Image
+            src={LOGO}
+            alt="logo"
+            width={40}
+            height={40}
+            className="rounded-full shadow-md"
+          />
           <SheetTitle className={"text-2xl"}>VantaHub</SheetTitle>
+          <SheetDescription className="sr-only">
+            Sidebar navigation
+          </SheetDescription>
         </SheetHeader>
-        <div className="flex flex-col gap-2">
-          <h2 className="text-xl font-bold px-4">Categories</h2>
-          <ul>
-            {SIDEBAR_ITEMS.map((item, index) => (
-              <li key={index}>
-                <Link
-                  href={item.url}
-                  className={
-                    "flex items-center justify-between px-7 py-2 rounded-md text-muted-foreground hover:text-accent-foreground hover:bg-secondary transition-colors cursor-pointer"
-                  }
-                >
-                  <span className="text-lg">{item.title}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col">
+          <h2 className="px-7.5 text-[16px] py-3.5 font-bold">Categories</h2>
+          <nav>
+            <ul>
+              {SIDEBAR_ITEMS.map((item, index) => (
+                <SidebarItem key={index} item={item} />
+              ))}
+            </ul>
+          </nav>
         </div>
       </SheetContent>
     </Sheet>

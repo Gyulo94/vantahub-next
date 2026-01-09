@@ -1,19 +1,12 @@
-import Logo from "./logo";
-import NavItem from "./nav-item";
-import UserButton from "./user-button";
-import { NAV_ITEMS } from "@/lib/constants";
+import TopSection from "./layout/top-section";
+import BottomSection from "./layout/bottom-section";
 
 export default function Navbar() {
   return (
-    <header className="w-full h-14 flex border-b backdrop-blur-xs">
-      <nav className="w-full max-w-7xl flex items-center justify-between px-4 xl:px-0 py-2 mx-auto">
-        <Logo />
-        <div className="flex items-center gap-3">
-          {NAV_ITEMS.map((item) => (
-            <NavItem key={item.title} item={item} />
-          ))}
-          <UserButton />
-        </div>
+    <header className="w-full flex flex-col border backdrop-blur-xs">
+      <nav className="w-full max-w-7xl flex flex-col px-4 xl:px-0 py-2 mx-auto">
+        <TopSection />
+        <BottomSection />
       </nav>
     </header>
   );

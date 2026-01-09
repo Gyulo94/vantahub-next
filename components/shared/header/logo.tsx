@@ -1,17 +1,18 @@
 "use client";
 
-import { useOpenMenuStore } from "@/lib/stores";
+import { LOGO } from "@/lib/constants";
 import Link from "next/link";
-import { IoMenu } from "react-icons/io5";
+import Image from "next/image";
 
 export default function Logo() {
-  const { onOpen } = useOpenMenuStore();
-
   return (
     <Link href={"/"} className="flex items-center w-full gap-3 ">
-      <IoMenu
-        className="size-10 rounded-full p-2 border-2 hover:bg-secondary transition-colors cursor-pointer"
-        onClick={onOpen}
+      <Image
+        src={LOGO}
+        alt="logo"
+        width={40}
+        height={40}
+        className="rounded-full shadow-md"
       />
       <h1 className="text-2xl font-bold">VantaHub</h1>
     </Link>
