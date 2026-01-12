@@ -109,7 +109,7 @@ export function LoginForm() {
             <div className="text-sm text-center text-muted-foreground">
               ¿No tienes una cuenta?{" "}
               <Link
-                href={"/signup"}
+                href={"/register"}
                 target="_self"
                 className="text-foreground link hover:underline underline-offset-2"
               >
