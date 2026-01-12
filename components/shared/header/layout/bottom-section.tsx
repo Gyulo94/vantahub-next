@@ -8,10 +8,10 @@ import NavBottomItem from "../nav-bottom-item";
 export default function BottomSection() {
   const { onOpen } = useOpenMenuStore();
   return (
-    <div className="flex justify-between items-center pt-5.5 pb-5">
+    <div className="hidden tablet:flex justify-between items-center pt-5.5 pb-5">
       <div className="flex items-center">
         <IoMenu
-          className="size-10 rounded-full p-2 border hover:bg-secondary transition-colors cursor-pointer"
+          className="tablet:size-8 desktop:size-10 rounded-full p-2 border hover:bg-secondary transition-colors cursor-pointer"
           onClick={onOpen}
         />
         {NAV_FOOTER_LEFT_ITEMS.map((item, index) => (

@@ -11,7 +11,7 @@ export default function NavBottomItem({ item }: Props) {
   return (
     <Link
       href={item.href}
-      className="leading-6 text-[16px] py-1.25 px-3 font-medium text-muted-foreground hover:text-foreground"
+      className="leading-6 laptop:text-[14px] desktop:text-[16px] py-1.25 px-3 font-medium text-muted-foreground hover:text-foreground"
     >
       {item.label}
     </Link>

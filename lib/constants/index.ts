@@ -1,8 +1,9 @@
 import { LuLibraryBig } from "react-icons/lu";
 import { LuBookMinus } from "react-icons/lu";
 import { LuTrophy } from "react-icons/lu";
+import { BOOK_ITEMS, STAR } from "./book";
 
-export const SIDEBAR_ITEMS = [
+const SIDEBAR_ITEMS = [
   {
     label: "Narrativa / Literatura",
     href: "/categories/narrativa-literatura",
@@ -47,7 +48,7 @@ export const SIDEBAR_ITEMS = [
   },
 ];
 
-export const NAV_FOOTER_LEFT_ITEMS = [
+const NAV_FOOTER_LEFT_ITEMS = [
   {
     label: "Literatura Infantil / Juvenil",
     href: "/categories/literatura-infantil-juvenil",
@@ -70,7 +71,7 @@ export const NAV_FOOTER_LEFT_ITEMS = [
   },
 ];
 
-export const NAV_FOOTER_RIGHT_ITEMS = [
+const NAV_FOOTER_RIGHT_ITEMS = [
   {
     label: "Consejos",
     href: "/categories/consejos",
@@ -81,7 +82,7 @@ export const NAV_FOOTER_RIGHT_ITEMS = [
   },
 ];
 
-export const NAV_ITEMS = [
+const NAV_ITEMS = [
   {
     title: "Mi Biblioteca",
     icon: LuLibraryBig,
@@ -89,4 +90,14 @@ export const NAV_ITEMS = [
   },
 ];
 
-export const LOGO = "/logo.jpg";
+const LOGO = "/logo.jpg";
+
+export {
+  SIDEBAR_ITEMS,
+  NAV_ITEMS,
+  LOGO,
+  NAV_FOOTER_LEFT_ITEMS,
+  NAV_FOOTER_RIGHT_ITEMS,
+  BOOK_ITEMS,
+  STAR,
+};
