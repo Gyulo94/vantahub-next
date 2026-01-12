@@ -12,11 +12,11 @@ import { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 
 export default function UserButton() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   return !isLogin ? (
-    <div className="rounded-full bg-secondary p-2 shadow-md hover:bg-secondary/80 transition-colors cursor-pointer">
-      <AiOutlineUser />
+    <div className="rounded-full bg-secondary p-1.5 shadow-md hover:bg-secondary/80 transition-colors cursor-pointer">
+      <AiOutlineUser className="size-5" />
     </div>
   ) : (
     <DropdownMenu>
