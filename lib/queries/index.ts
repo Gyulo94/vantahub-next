@@ -1,1 +1,7 @@
-export { useLogin, useRegister, useVerifyToken, useSendMail } from "./auth";
+export {
+  useLogin,
+  useRegister,
+  useVerifyToken,
+  useSendMail,
+  useResetPassword,
+} from "./auth";

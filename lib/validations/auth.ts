@@ -41,7 +41,38 @@ export const RegisterFormSchema = z
     if (data.password !== data.confirmPassword) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: "La contraseña no coincide.",
+        message: "Las contraseñas no coinciden.",
+        path: ["confirmPassword"],
+      });
+    }
+  });
+
+export const ResetPasswordFormSchema = z
+  .object({
+    email: z
+      .string()
+      .email({ message: "Por favor, ingrese un correo electrónico válido." })
+      .trim(),
+    token: z.string().trim(),
+    password: z
+      .string()
+      .min(8, { message: "La contraseña debe tener al menos 8 caracteres." })
+      .regex(/[a-zA-Z]/, { message: "La contraseña debe incluir letras." })
+      .regex(/[0-9]/, { message: "La contraseña debe incluir números." })
+      .regex(/[^a-zA-Z0-9]/, {
+        message: "La contraseña debe incluir caracteres especiales.",
+      })
+      .trim(),
+    confirmPassword: z
+      .string()
+      .min(1, { message: "Por favor, confirme su contraseña." })
+      .trim(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.password !== data.confirmPassword) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Las contraseñas no coinciden.",
         path: ["confirmPassword"],
       });
     }

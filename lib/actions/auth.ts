@@ -1,7 +1,11 @@
 "use server";
 
 import z from "zod/v3";
-import { LoginFormSchema, RegisterFormSchema } from "../validations";
+import {
+  LoginFormSchema,
+  RegisterFormSchema,
+  ResetPasswordFormSchema,
+} from "../validations";
 import { signIn } from "@/auth";
 import { SERVER_URL } from "../constants";
 import axios from "axios";
@@ -66,3 +70,23 @@ export async function verifyToken(token: string) {
     throw error;
   }
 }
+
+export const resetPassword = async (
+  values: z.infer<typeof ResetPasswordFormSchema>
+) => {
+  const { email, token, password } = values;
+  try {
+    const response = await axios.post(`${SERVER_URL}/auth/reset-password`, {
+      email,
+      token,
+      password,
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const message = error.response?.data?.message;
+      throw new Error(message);
+    }
+    throw error;
+  }
+};

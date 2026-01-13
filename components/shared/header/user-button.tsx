@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import UserAvatar from "@/components/ui/user-avatar";
 import { DEFAULT_AVATAR } from "@/lib/constants";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
@@ -70,7 +70,7 @@ export default function UserButton() {
         </DropdownMenuItem>
         <DropdownMenuItem
           className="h-10 flex items-center justify-center font-medium text-destructive hover:text-destructive/80! hover:bg-destructive/10! cursor-pointer"
-          onClick={() => {}}
+          onClick={() => signOut()}
         >
           Finalizar Sesión
         </DropdownMenuItem>
