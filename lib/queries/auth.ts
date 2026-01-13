@@ -6,7 +6,7 @@ export function useLogin() {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: () => {
-      window.location.href = "/dashboard";
+      window.location.href = "/";
     },
     onError: (error) => {
       if (error instanceof Error) {

@@ -30,6 +30,7 @@ async function refreshToken(token: JWT): Promise<JWT> {
 }
 
 export const config = {
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
     error: "/login",
@@ -121,6 +122,7 @@ export const config = {
         email: token.user.email,
         name: token.user.name,
         image: token.user.image,
+        role: token.user.role,
         provider: token.user.provider,
       };
 
@@ -129,17 +131,17 @@ export const config = {
       return session;
     },
   },
-  events: {
-    async signOut({ token }: any) {
-      try {
-        await axios.post(`${SERVER_URL}/auth/logout`, {
-          userId: token.user.id,
-        });
-      } catch (error) {
-        console.error("Logout error:", error);
-      }
-    },
-  },
+  // events: {
+  //   async signOut({ token }: any) {
+  //     try {
+  //       await axios.post(`${SERVER_URL}/auth/logout`, {
+  //         userId: token.user.id,
+  //       });
+  //     } catch (error) {
+  //       console.error("Logout error:", error);
+  //     }
+  //   },
+  // },
 } satisfies NextAuthConfig;
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);

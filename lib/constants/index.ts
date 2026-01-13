@@ -93,6 +93,7 @@ const NAV_ITEMS = [
 const LOGO = "/logo.jpg";
 
 const SERVER_URL = process.env.SERVER_URL;
+const DEFAULT_AVATAR = "/images/default-avatar.jpg";
 
 export {
   SIDEBAR_ITEMS,
@@ -102,5 +103,6 @@ export {
   NAV_FOOTER_RIGHT_ITEMS,
   BOOK_ITEMS,
   SERVER_URL,
+  DEFAULT_AVATAR,
   STAR,
 };
