@@ -62,6 +62,14 @@ export default function UserButton() {
           </div>
         </div>
         <Separator className="mb-1" />
+        {session?.user.role === "ADMIN" && (
+          <DropdownMenuItem
+            className="h-10 flex items-center justify-center font-medium cursor-pointer hover:bg-secondary"
+            onClick={() => router.push("/admin")}
+          >
+            Panel de Administración
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem
           className="h-10 flex items-center justify-center font-medium cursor-pointer hover:bg-secondary"
           onClick={() => {}}
