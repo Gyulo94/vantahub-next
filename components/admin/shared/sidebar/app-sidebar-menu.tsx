@@ -2,39 +2,51 @@
 
 import { User } from "lucide-react";
 import AppSidebarMenuItem from "./app-sidebar-menu-item";
+import { LuBook, LuBookmarkPlus, LuUserPen } from "react-icons/lu";
 import {
-  LuBook,
-  LuBookmarkPlus,
-  LuBookPlus,
-  LuUserRoundPlus,
-} from "react-icons/lu";
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+} from "@/components/ui/sidebar";
 
 const SIDEBAR_ITEMS = [
   {
     label: "Libros",
     icon: LuBook,
     href: "/books",
-    subItems: [{ label: "Libro", href: "#", icon: LuBookPlus }],
-    gender: "MALE",
+  },
+  {
+    label: "Author",
+    icon: LuUserPen,
+    href: "/authors",
   },
   {
     label: "Categorías",
     icon: LuBookmarkPlus,
     href: "/categories",
-    subItems: [{ label: "Categoría", href: "#", icon: LuBookmarkPlus }],
-    gender: "FEMALE",
   },
   {
     label: "Usuarios",
     icon: User,
     href: "/users",
-    subItems: [{ label: "Usuario", href: "#", icon: LuUserRoundPlus }],
-    gender: "MALE",
   },
 ];
 
 export default function AppSidebarMenu() {
-  return SIDEBAR_ITEMS.map((item) => (
-    <AppSidebarMenuItem key={item.label} item={item} />
-  ));
+  return (
+    <SidebarContent>
+      <SidebarGroup>
+        <SidebarGroupLabel>Sidebar Menu</SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            {SIDEBAR_ITEMS.map((item) => (
+              <AppSidebarMenuItem key={item.label} item={item} />
+            ))}
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+    </SidebarContent>
+  );
 }

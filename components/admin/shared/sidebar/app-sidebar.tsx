@@ -2,11 +2,7 @@
 // import AddUser from "./AddUser";
 // import AddCategory from "./AddCategory";
 // import AddProduct from "./AddProduct";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarSeparator,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarSeparator } from "@/components/ui/sidebar";
 import AppSidebarHeader from "./app-sidebar-header";
 import AppSidebarMenu from "./app-sidebar-menu";
 import AppSidebarNavMenu from "./app-sidebar-nav-menu";
@@ -16,10 +12,8 @@ export default function AppSidebar() {
     <Sidebar collapsible="icon">
       <AppSidebarHeader />
       <SidebarSeparator />
-      <SidebarContent>
-        <AppSidebarNavMenu />
-        <AppSidebarMenu />
-      </SidebarContent>
+      <AppSidebarNavMenu />
+      <AppSidebarMenu />
     </Sidebar>
   );
 }

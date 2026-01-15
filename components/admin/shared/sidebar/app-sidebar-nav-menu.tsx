@@ -16,17 +16,19 @@ import {
 } from "@/components/ui/tooltip";
 import Link from "next/link";
 import { Home } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const items = [
   {
     label: "Inicio",
-    href: "/",
+    href: "/admin",
     icon: Home,
   },
 ];
 
 export default function AppSidebarNavMenu() {
   const { state } = useSidebar();
+  const pathname = usePathname();
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Aplicaciones</SidebarGroupLabel>
@@ -37,7 +39,12 @@ export default function AppSidebarNavMenu() {
               <Tooltip key={item.label}>
                 <SidebarMenuItem>
                   <TooltipTrigger asChild>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton
+                      className={
+                        pathname.includes(item.href) ? "bg-secondary" : ""
+                      }
+                      asChild
+                    >
                       <Link href={item.href}>
                         <item.icon />
                         <span>{item.label}</span>
