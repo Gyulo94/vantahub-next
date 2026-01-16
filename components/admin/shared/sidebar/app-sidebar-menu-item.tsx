@@ -31,7 +31,7 @@ export default function AppSidebarMenuItem({ item }: Props) {
       <SidebarMenuItem>
         <TooltipTrigger asChild>
           <SidebarMenuButton
-            className={pathname.includes(item.href) ? "bg-secondary" : ""}
+            className={pathname === item.href ? "bg-secondary" : ""}
             asChild
           >
             <Link href={item.href}>

@@ -15,22 +15,22 @@ const SIDEBAR_ITEMS = [
   {
     label: "Libros",
     icon: LuBook,
-    href: "/books",
+    href: "/admin/books",
   },
   {
-    label: "Author",
+    label: "Authors",
     icon: LuUserPen,
-    href: "/authors",
+    href: "/admin/authors",
   },
   {
     label: "Categorías",
     icon: LuBookmarkPlus,
-    href: "/categories",
+    href: "/admin/categories",
   },
   {
     label: "Usuarios",
     icon: User,
-    href: "/users",
+    href: "/admin/users",
   },
 ];
 
