@@ -2,6 +2,7 @@ import { LuLibraryBig } from "react-icons/lu";
 import { LuBookMinus } from "react-icons/lu";
 import { LuTrophy } from "react-icons/lu";
 import { BOOK_ITEMS, STAR } from "./book";
+import { FILE_URL } from "./file";
 
 const SIDEBAR_ITEMS = [
   {
@@ -105,4 +106,5 @@ export {
   SERVER_URL,
   DEFAULT_AVATAR,
   STAR,
+  FILE_URL,
 };

@@ -5,3 +5,4 @@ export {
   useSendMail,
   useResetPassword,
 } from "./auth";
+export { useCreateAuthor, useFindAuthorsAll } from "./author";
