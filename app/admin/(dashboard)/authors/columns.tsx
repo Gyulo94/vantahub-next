@@ -1,20 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Author } from "@/lib/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import Action from "@/components/ui/action";
+import { useEditAuthorStore } from "@/lib/stores";
 
 export const columns: ColumnDef<Author>[] = [
   {
@@ -77,24 +68,12 @@ export const columns: ColumnDef<Author>[] = [
     size: 80,
     cell: ({ row }) => {
       const author = row.original;
-
+      const { onOpen } = useEditAuthorStore();
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="size-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="size-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => {}}>Editar</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href={`/admin/author/${author.id}`}>Ver</Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Action
+          href={`/admin/author/${author.id}`}
+          onClick={() => onOpen(author.id)}
+        />
       );
     },
   },

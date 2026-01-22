@@ -74,12 +74,12 @@ export default function AuthorForm({
                 <div className="flex items-center gap-x-5">
                   {field.value ? (
                     <Avatar
-                      className="size-18 relative rounded-md overflow-hidden cursor-pointer hover:opacity-75 transition-opacity"
+                      className="size-18 relative rounded-md overflow-hidden cursor-pointer hover:opacity-75 transition-opacity focus-visible:outline-0"
                       {...getRootProps()}
                     >
                       <AvatarImage
                         src={field.value}
-                        className="object-cover rounded-full"
+                        className="object-cover rounded-full focus-visible:outline-0"
                         alt="Author Image"
                       />
                       {uploading && (

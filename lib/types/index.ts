@@ -3,6 +3,7 @@ type OpenState = {
   onOpen: () => void;
   onClose: () => void;
 };
+
 export type { Author } from "./author";
 export type { Image } from "./image";
 export type { Category } from "./category";

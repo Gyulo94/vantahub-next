@@ -7,5 +7,5 @@ export const useOpenMenuStore = create<OpenState>((set) => ({
   onClose: () => set({ isOpen: false }),
 }));
 
-export { useOpenAuthorStore } from "./author";
+export { useOpenAuthorStore, useEditAuthorStore } from "./author";
 export { useOpenCategoryStore } from "./category";

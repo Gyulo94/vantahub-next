@@ -1,5 +1,6 @@
 "use client";
 import CreateAuthorSheet from "../admin/authors/create-author-sheet";
+import EditAuthorSheet from "../admin/authors/edit-author-sheet";
 import CreateCategorySheet from "../admin/categories/create-category-sheet";
 import SidebarSheet from "../shared/sidebar/sidebar-sheet";
 
@@ -8,6 +9,7 @@ export default function ModalProvider() {
     <>
       <SidebarSheet />
       <CreateAuthorSheet />
+      <EditAuthorSheet />
       <CreateCategorySheet />
     </>
   );

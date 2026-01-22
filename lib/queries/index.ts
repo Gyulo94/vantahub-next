@@ -5,5 +5,10 @@ export {
   useSendMail,
   useResetPassword,
 } from "./auth";
-export { useCreateAuthor, useFindAuthorsAll } from "./author";
+export {
+  useCreateAuthor,
+  useFindAuthorsAll,
+  useFindAuthorById,
+  useUpdateAuthor,
+} from "./author";
 export { useCreateCategory, useFindCategoriesAll } from "./category";
