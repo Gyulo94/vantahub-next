@@ -6,3 +6,4 @@ export {
   useResetPassword,
 } from "./auth";
 export { useCreateAuthor, useFindAuthorsAll } from "./author";
+export { useCreateCategory, useFindCategoriesAll } from "./category";

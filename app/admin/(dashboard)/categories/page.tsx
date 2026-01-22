@@ -1,14 +1,14 @@
 import { getQueryClient } from "@/components/providers/get-query-client";
-import TopSection from "@/components/admin/authors/layout/top-section";
-import { findAuthorsAll } from "@/lib/actions";
+import TopSection from "@/components/admin/categories/layout/top-section";
+import { findCategoriesAll } from "@/lib/actions";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import FeatureSection from "@/components/admin/authors/layout/feature-section";
+import FeatureSection from "@/components/admin/categories/layout/feature-section";
 
-export default async function AuthorsPage() {
+export default async function CategoriesPage() {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ["authors"],
-    queryFn: findAuthorsAll,
+    queryKey: ["categories"],
+    queryFn: findCategoriesAll,
   });
 
   const state = dehydrate(queryClient);

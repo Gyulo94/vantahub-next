@@ -25,9 +25,6 @@ export default function CreateAuthorSheet() {
       onSuccess() {
         onClose();
       },
-      onError() {
-        onClose();
-      },
     });
   }
   return (

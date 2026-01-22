@@ -10,16 +10,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Author } from "@/lib/types";
+import { Category } from "@/lib/types";
 import { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
 import { MoreHorizontal } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
-export const columns: ColumnDef<Author>[] = [
+export const columns: ColumnDef<Category>[] = [
   {
     id: "select",
-    size: 50,
     header: ({ table }) => (
       <Checkbox
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
@@ -37,53 +36,40 @@ export const columns: ColumnDef<Author>[] = [
     ),
   },
   {
-    accessorKey: "image",
-    header: "Image",
-    size: 80,
-    cell: ({ row }) => {
-      const author = row.original;
-      return (
-        <div className="size-9 relative">
-          <Image
-            src={author.image.url}
-            alt={author.name || "-"}
-            fill
-            className="rounded-full object-cover"
-          />
-        </div>
-      );
-    },
-  },
-  {
     accessorKey: "name",
-    header: "Author",
-    size: 200,
+    header: "Category",
     cell: ({ row }) => {
-      const author = row.original;
-      return <div>{author.name || "-"}</div>;
+      const category = row.original;
+      return <div>{category.name || "-"}</div>;
     },
   },
   {
-    accessorKey: "bio",
-    header: "Bio",
-    size: 700,
+    accessorKey: "createdAt",
+    header: "Created At",
     cell: ({ row }) => {
-      const author = row.original;
-      return <div className="line-clamp-1">{author.bio || "-"}</div>;
+      const category = row.original;
+      return <div>{format(category.createdAt, "PPP")}</div>;
+    },
+  },
+  {
+    accessorKey: "updatedAt",
+    header: "Updated At",
+    cell: ({ row }) => {
+      const category = row.original;
+      return <div>{format(category.updatedAt, "PPP")}</div>;
     },
   },
   {
     id: "actions",
-    size: 80,
     cell: ({ row }) => {
-      const author = row.original;
+      const category = row.original;
 
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="size-8 p-0">
               <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="size-4" />
+              <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -91,7 +77,7 @@ export const columns: ColumnDef<Author>[] = [
             <DropdownMenuItem onClick={() => {}}>Editar</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href={`/admin/author/${author.id}`}>Ver</Link>
+              <Link href={`/admin/category/${category.id}`}>Ver</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

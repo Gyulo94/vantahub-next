@@ -5,3 +5,4 @@ export {
 } from "./auth";
 
 export { AuthorFormSchema } from "./author";
+export { CategoryFormSchema } from "./category";

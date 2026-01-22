@@ -1,11 +1,8 @@
 import { create } from "zustand";
 import { OpenState } from "../types";
 
-export const useOpenMenuStore = create<OpenState>((set) => ({
+export const useOpenCategoryStore = create<OpenState>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
-
-export { useOpenAuthorStore } from "./author";
-export { useOpenCategoryStore } from "./category";
