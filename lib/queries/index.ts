@@ -12,4 +12,10 @@ export {
   useUpdateAuthor,
   useDeleteManyAuthors,
 } from "./author";
-export { useCreateCategory, useFindCategoriesAll } from "./category";
+export {
+  useCreateCategory,
+  useFindCategoriesAll,
+  useFindCategoryById,
+  useUpdateCategory,
+  useDeleteManyCategories,
+} from "./category";

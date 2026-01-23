@@ -7,4 +7,10 @@ export {
   updateAuthor,
   deleteManyAuthors,
 } from "./author";
-export { createCategory, findCategoriesAll } from "./category";
+export {
+  createCategory,
+  findCategoriesAll,
+  findCategoryById,
+  updateCategory,
+  deleteManyCategories,
+} from "./category";

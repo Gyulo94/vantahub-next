@@ -19,21 +19,22 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import { Trash2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Loader, Trash2 } from "lucide-react";
 import { DataTablePagination } from "@/components/ui/table-pagination";
+import { useDeleteManyCategories } from "@/lib/queries";
 
-interface DataTableProps<TData, TValue> {
+interface DataTableProps<TData extends { id: string }, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends { id: string }, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
+  const { mutate: deleteCategories, isPending } = useDeleteManyCategories();
 
   const table = useReactTable({
     data,
@@ -49,7 +50,18 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  const router = useRouter();
+  const selectedIds = table
+    .getRowModel()
+    .rows.filter((row) => row.getIsSelected())
+    .map((row) => row.original.id);
+
+  const handleDelete = () => {
+    deleteCategories(selectedIds, {
+      onSuccess() {
+        table.resetRowSelection();
+      },
+    });
+  };
 
   return (
     <div className="rounded-md border">
@@ -57,12 +69,17 @@ export function DataTable<TData, TValue>({
         <div className="flex justify-end">
           <button
             className="flex items-center gap-2 bg-red-500 text-white px-2 py-1 text-sm rounded-md m-4 cursor-pointer"
-            // onClick={() => mutation.mutate()}
-            // disabled={mutation.isPending}
+            onClick={handleDelete}
+            disabled={isPending}
           >
-            <Trash2 className="w-4 h-4" />
-            {/* {mutation.isPending ? "Eliminando" : "Eliminar usuario(s)"} */}
-            Eliminar usuario(s)
+            {isPending ? (
+              <div className="flex items-center justify-center">
+                <Loader className="size-3" />
+              </div>
+            ) : (
+              <Trash2 className="size-4" />
+            )}
+            {isPending ? "Eliminando..." : "Eliminar Categoría(s)"}
           </button>
         </div>
       )}
@@ -77,7 +94,7 @@ export function DataTable<TData, TValue>({
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </TableHead>
                 );

@@ -1,20 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import Action from "@/components/ui/action";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useEditCategoryStore } from "@/lib/stores";
 import { Category } from "@/lib/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
-import { MoreHorizontal } from "lucide-react";
-import Link from "next/link";
 
 export const columns: ColumnDef<Category>[] = [
   {
@@ -62,25 +53,14 @@ export const columns: ColumnDef<Category>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
+      const { onOpen } = useEditCategoryStore();
       const category = row.original;
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="size-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => {}}>Editar</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href={`/admin/category/${category.id}`}>Ver</Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Action
+          href={`/admin/category/${category.id}`}
+          onClick={() => onOpen(category.id)}
+        />
       );
     },
   },

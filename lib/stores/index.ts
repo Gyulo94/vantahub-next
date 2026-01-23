@@ -8,4 +8,4 @@ export const useOpenMenuStore = create<OpenState>((set) => ({
 }));
 
 export { useOpenAuthorStore, useEditAuthorStore } from "./author";
-export { useOpenCategoryStore } from "./category";
+export { useOpenCategoryStore, useEditCategoryStore } from "./category";
