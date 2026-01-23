@@ -6,6 +6,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import Action from "@/components/ui/action";
 import { useEditAuthorStore } from "@/lib/stores";
+import { DEFAULT_AVATAR } from "@/lib/constants";
 
 export const columns: ColumnDef<Author>[] = [
   {
@@ -36,7 +37,7 @@ export const columns: ColumnDef<Author>[] = [
       return (
         <div className="size-9 relative">
           <Image
-            src={author.image.url}
+            src={author.image?.url || DEFAULT_AVATAR}
             alt={author.name || "-"}
             fill
             className="rounded-full object-cover"

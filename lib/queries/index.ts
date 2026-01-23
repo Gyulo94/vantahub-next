@@ -10,5 +10,6 @@ export {
   useFindAuthorsAll,
   useFindAuthorById,
   useUpdateAuthor,
+  useDeleteManyAuthors,
 } from "./author";
 export { useCreateCategory, useFindCategoriesAll } from "./category";

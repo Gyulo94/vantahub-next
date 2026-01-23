@@ -88,3 +88,23 @@ export async function updateAuthor(
     throw error;
   }
 }
+
+export async function deleteManyAuthors(ids: string[]) {
+  const session = await auth();
+  const token = session?.serverTokens.accessToken;
+  try {
+    const response = await axios.delete(`${SERVER_URL}/author/delete`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: { ids },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const message = error.response?.data?.message;
+      throw new Error(message);
+    }
+    throw error;
+  }
+}

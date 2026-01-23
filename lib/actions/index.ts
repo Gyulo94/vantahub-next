@@ -5,5 +5,6 @@ export {
   findAuthorsAll,
   findAuthorById,
   updateAuthor,
+  deleteManyAuthors,
 } from "./author";
 export { createCategory, findCategoriesAll } from "./category";

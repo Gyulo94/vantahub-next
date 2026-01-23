@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createAuthor,
+  deleteManyAuthors,
   findAuthorById,
   findAuthorsAll,
   updateAuthor,
@@ -52,6 +53,23 @@ export function useUpdateAuthor(id?: string) {
       toast.success(data.message);
       queryClient.invalidateQueries({ queryKey: ["authors"] });
       queryClient.invalidateQueries({ queryKey: ["author", { id }] });
+    },
+    onError: (error) => {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    },
+  });
+  return mutation;
+}
+
+export function useDeleteManyAuthors() {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: async (ids: string[]) => deleteManyAuthors(ids),
+    onSuccess: (data, ids) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ["authors"] });
     },
     onError: (error) => {
       if (error instanceof Error) {
