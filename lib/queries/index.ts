@@ -19,3 +19,10 @@ export {
   useUpdateCategory,
   useDeleteManyCategories,
 } from "./category";
+export {
+  useCreateBook,
+  useFindBooksAll,
+  useFindBookById,
+  useUpdateBook,
+  useDeleteManyBooks,
+} from "./book";

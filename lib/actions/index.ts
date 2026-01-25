@@ -1,5 +1,6 @@
 export { login, register, sendEmail, verifyToken, resetPassword } from "./auth";
-export { imageUpload } from "./file";
+export { imageUpload } from "./image";
+export { pdfUpload } from "./pdf";
 export {
   createAuthor,
   findAuthorsAll,
@@ -14,3 +15,10 @@ export {
   updateCategory,
   deleteManyCategories,
 } from "./category";
+export {
+  createBook,
+  findBooksAll,
+  findBookById,
+  updateBook,
+  deleteManyBooks,
+} from "./book";

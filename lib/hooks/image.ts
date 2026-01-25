@@ -24,7 +24,7 @@ export function useImageUpload({
     const hasChanged =
       currentInitialImages.length !== prevInitialImages.length ||
       currentInitialImages.some(
-        (img, index) => img !== prevInitialImages[index]
+        (img, index) => img !== prevInitialImages[index],
       );
 
     if (hasChanged) {
@@ -39,7 +39,7 @@ export function useImageUpload({
       const filesToUpload = acceptedFiles.slice(0, maxImages);
 
       if (filesToUpload.length === 0) {
-        toast.error("업로드할 이미지를 선택해주세요.");
+        toast.error("Elegir imágenes para subir.");
         return;
       }
       setUploading(true);
@@ -67,12 +67,12 @@ export function useImageUpload({
           onSuccess?.(newImages);
         }
       } catch (error) {
-        toast.error("이미지 업로드에 실패했습니다.");
+        toast.error("Error al subir las imágenes.");
       } finally {
         setUploading(false);
       }
     },
-    [images, maxImages, onSuccess]
+    [images, maxImages, onSuccess],
   );
 
   return {

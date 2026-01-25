@@ -9,3 +9,4 @@ export const useOpenMenuStore = create<OpenState>((set) => ({
 
 export { useOpenAuthorStore, useEditAuthorStore } from "./author";
 export { useOpenCategoryStore, useEditCategoryStore } from "./category";
+export { useOpenBookStore, useEditBookStore } from "./book";

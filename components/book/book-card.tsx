@@ -1,24 +1,18 @@
+import { Book } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
-  book?: {
-    id: number;
-    title: string;
-    href: string;
-    category: string;
-    author: string;
-    image: string;
-  };
+  book: Book;
 }
 
 export default function BookCard({ book }: Props) {
   return (
     <div className="w-45">
-      <Link href={book?.href || "#"}>
+      <Link href={`books/${book.id}/${book?.slug}` || "#"}>
         <div className="relative w-45 h-66.5 rounded-md overflow-hidden border shadow-lg">
           <Image
-            src={book?.image || ""}
+            src={book?.image?.url || ""}
             alt={book?.title || "book cover"}
             fill
             sizes="180px"
@@ -30,14 +24,14 @@ export default function BookCard({ book }: Props) {
         <div className="flex items-center w-45 mt-5 h-10">
           <Link
             className="text-[15px] font-bold mb-1.75 line-clamp-2"
-            href={book?.href || "#"}
+            href={`books/${book.id}/${book?.slug}` || "#"}
           >
             {book?.title}
           </Link>
         </div>
         <div className=" w-45 line-clamp-1 text-[13px] text-muted-foreground">
-          <span>{book?.author}</span>
-          <span> • {book?.category}</span>
+          <span>{book?.author.name}</span>
+          <span> • {book?.category.name}</span>
         </div>
       </div>
     </div>

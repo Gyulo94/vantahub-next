@@ -8,6 +8,9 @@ export const BookFormSchema = z.object({
       message: "El título del libro no puede exceder los 100 caracteres.",
     })
     .trim(),
+  image: z
+    .string()
+    .url({ message: "Por favor, ingrese una URL válida para la imagen." }),
   authorId: z
     .string()
     .uuid({ message: "Por favor, seleccione un autor válido." }),
@@ -23,7 +26,7 @@ export const BookFormSchema = z.object({
   publishedAt: z.date({
     invalid_type_error: "Por favor, ingrese una fecha de publicación válida.",
   }),
-  pdfUrl: z
+  pdf: z
     .string()
     .url({ message: "Por favor, ingrese una URL válida para el PDF." }),
   slug: z
@@ -33,9 +36,4 @@ export const BookFormSchema = z.object({
       message: "El slug del libro no puede exceder los 100 caracteres.",
     })
     .trim(),
-  totalPages: z
-    .number()
-    .min(1, {
-      message: "Por favor, ingrese el número total de páginas del libro.",
-    }),
 });
