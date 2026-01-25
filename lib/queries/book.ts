@@ -29,7 +29,7 @@ export function useCreateBook() {
 }
 
 export function useFindBooksAll() {
-  const query = useQuery({
+  const query = useQuery<Book[]>({
     queryKey: ["books"],
     queryFn: findBooksAll,
   });
