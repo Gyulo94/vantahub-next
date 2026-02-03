@@ -22,3 +22,4 @@ export {
   updateBook,
   deleteManyBooks,
 } from "./book";
+export { findReviewsAll } from "./review";
