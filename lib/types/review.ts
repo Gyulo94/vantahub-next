@@ -11,6 +11,12 @@ export type Review = {
   updatedAt: Date;
 };
 
-export type ReviewRequest = {
+export type ReviewFilterRequest = {
   bookId?: number;
+};
+
+export type ReviewRequest = {
+  bookId: number;
+  rating: number;
+  comment: string;
 };

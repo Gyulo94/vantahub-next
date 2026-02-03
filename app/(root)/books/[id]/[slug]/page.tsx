@@ -2,7 +2,7 @@ import FeatureSection from "@/components/book/layout/details/feature-section";
 import HeaderSection from "@/components/book/layout/details/header-section";
 import ReviewSection from "@/components/book/layout/details/review-section";
 import { getQueryClient } from "@/components/providers/get-query-client";
-import { findBookById, findReviewsAll } from "@/lib/actions";
+import { checkReviewExists, findBookById, findReviewsAll } from "@/lib/actions";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { notFound, redirect } from "next/navigation";
 
@@ -33,6 +33,10 @@ export default async function BookDetailPage({ params }: Props) {
   await queryClient.prefetchQuery({
     queryKey: ["reviews", { filter: { bookId } }],
     queryFn: async () => findReviewsAll({ bookId }),
+  });
+  await queryClient.prefetchQuery({
+    queryKey: ["review", "exists", { bookId }],
+    queryFn: async () => checkReviewExists(bookId),
   });
 
   const state = dehydrate(queryClient);

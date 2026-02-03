@@ -26,9 +26,15 @@ export default function HeaderSection({ id }: Props) {
           </div>
           <div className="w-full">
             <h1 className="text-3xl font-semibold">{book?.title}</h1>
-            <div className="w-full border-b border-black py-1 mb-4" />
+            <div className="w-full border-b border-black dark:border-white py-1 mb-4" />
             <table className="text-sm">
               <tbody>
+                <tr>
+                  <td className="font-semibold pr-4 py-2 align-top text-lg">
+                    Categoria:
+                  </td>
+                  <td className="py-2 text-lg">{book?.category.name}</td>
+                </tr>
                 <tr>
                   <td className="font-semibold pr-4 py-2 align-top text-lg">
                     Autor:
@@ -37,9 +43,22 @@ export default function HeaderSection({ id }: Props) {
                 </tr>
                 <tr>
                   <td className="font-semibold pr-4 py-2 align-top text-lg">
-                    Categoria:
+                    Calificaciónes:
                   </td>
-                  <td className="py-2 text-lg">{book?.category.name}</td>
+                  <td className="py-2 text-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="relative aspect-square w-4.5">
+                        <Image src={"/images/star.svg"} fill alt="rating" />
+                      </div>
+                      {book?.rating} ({book?.reviewCount.toLocaleString() ?? 0})
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="font-semibold pr-4 py-2 align-top text-lg">
+                    Páginas:
+                  </td>
+                  <td className="py-2 text-lg">{book?.totalPages ?? 0}</td>
                 </tr>
                 <tr>
                   <td className="font-semibold pr-4 py-2 align-top text-lg">
@@ -50,18 +69,6 @@ export default function HeaderSection({ id }: Props) {
                       locale: es,
                     })}
                   </td>
-                </tr>
-                <tr>
-                  <td className="font-semibold pr-4 py-2 align-top text-lg">
-                    Recomendado por
-                  </td>
-                  <td className="py-2 text-lg">{book?.recommendedBy ?? 0}</td>
-                </tr>
-                <tr>
-                  <td className="font-semibold pr-4 py-2 align-top text-lg">
-                    Páginas:
-                  </td>
-                  <td className="py-2 text-lg">{book?.totalPages ?? 0}</td>
                 </tr>
               </tbody>
             </table>

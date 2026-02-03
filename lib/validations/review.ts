@@ -13,4 +13,5 @@ export const ReviewFormSchema = z.object({
     .max(1000, {
       message: "El comentario debe tener como máximo 1000 caracteres",
     }),
+  bookId: z.number().min(1, { message: "El ID del libro es inválido" }),
 });

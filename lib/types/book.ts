@@ -11,6 +11,8 @@ export type Book = {
   publishedAt: Date;
   createdAt: Date;
   updatedAt: Date;
+  rating: number;
+  reviewCount: number;
   pdf?: Pdf;
   slug: string;
   totalPages: number;

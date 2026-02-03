@@ -18,7 +18,7 @@ import BookRating from "@/components/ui/book-rating";
 
 interface Props {
   id?: string;
-  defaultValues?: Partial<z.infer<typeof ReviewFormSchema>>;
+  defaultValues: Partial<z.infer<typeof ReviewFormSchema>>;
   onSubmit: (data: z.infer<typeof ReviewFormSchema>) => void;
 }
 
@@ -30,7 +30,14 @@ export default function ReviewForm({ id, defaultValues, onSubmit }: Props) {
   return (
     <Form {...form}>
       <Card className="mb-5 py-2">
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-4">
+        <form
+          onSubmit={form.handleSubmit((values) => {
+            values.bookId =
+              defaultValues.bookId !== undefined ? defaultValues.bookId : 0;
+            onSubmit(values);
+          })}
+          className="space-y-4 p-4"
+        >
           <FormField
             control={form.control}
             name="comment"

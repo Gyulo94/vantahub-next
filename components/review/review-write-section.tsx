@@ -1,15 +1,22 @@
 import z from "zod/v3";
 import ReviewForm from "./form/review-form";
 import { ReviewFormSchema } from "@/lib/validations";
+import { useCreateReview } from "@/lib/queries";
 
-export default function ReviewWriteSection() {
+interface Props {
+  bookId: number;
+}
+
+export default function ReviewWriteSection({ bookId }: Props) {
+  const { mutate: createReview } = useCreateReview();
   const defaultValues = {
     rating: 0,
     comment: "",
+    bookId,
   };
 
   function handleSubmit(values: z.infer<typeof ReviewFormSchema>) {
-    console.log(values);
+    createReview(values);
   }
 
   return (

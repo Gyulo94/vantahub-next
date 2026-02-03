@@ -26,4 +26,8 @@ export {
   useUpdateBook,
   useDeleteManyBooks,
 } from "./book";
-export { useFindReviewsAll } from "./review";
+export {
+  useFindReviewsAll,
+  useCreateReview,
+  useCheckReviewExists,
+} from "./review";
