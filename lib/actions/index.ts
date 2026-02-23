@@ -24,3 +24,4 @@ export {
   readingBook,
 } from "./book";
 export { findReviewsAll, createReview, checkReviewExists } from "./review";
+export { findNotesByBookId, createNote } from "./note";

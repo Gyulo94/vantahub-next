@@ -8,3 +8,4 @@ export { AuthorFormSchema } from "./author";
 export { CategoryFormSchema } from "./category";
 export { BookFormSchema } from "./book";
 export { ReviewFormSchema } from "./review";
+export { NoteFormSchema } from "./note";

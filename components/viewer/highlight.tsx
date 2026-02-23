@@ -1,6 +1,5 @@
 import { Position, Tooltip } from "@react-pdf-viewer/core";
 import {
-  HighlightArea,
   MessageIcon,
   RenderHighlightContentProps,
   RenderHighlightsProps,
@@ -9,38 +8,28 @@ import {
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import React, { useState } from "react";
-export interface Note {
-  id: string;
-  content: string;
-  highlightAreas: HighlightArea[];
-  quote: string;
-  pageIndex?: number;
-}
+import { Note } from "@/lib/types";
+import { useCreateNote } from "@/lib/queries";
 
 interface HighlightContentProps extends RenderHighlightContentProps {
-  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
+  bookId: number;
 }
 
-export function HighlightContent({
-  setNotes,
-  ...props
-}: HighlightContentProps) {
+export function HighlightContent({ bookId, ...props }: HighlightContentProps) {
   const [message, setMessage] = useState("");
-  const addNote = () => {
+  const { mutate: createNote } = useCreateNote();
+  function onSubmit() {
     if (message.trim() !== "") {
-      setNotes((prev) => {
-        const note: Note = {
-          id: prev.length.toString(),
-          content: message.trim(),
-          highlightAreas: props.highlightAreas,
-          quote: props.selectedText,
-          pageIndex: props.selectionRegion.pageIndex + 1,
-        };
-        return prev.concat([note]);
+      createNote({
+        content: message.trim(),
+        bookId,
+        pageIndex: props.selectionRegion.pageIndex + 1,
+        quote: props.selectedText,
+        highlightAreas: props.highlightAreas,
       });
       props.cancel();
     }
-  };
+  }
 
   return (
     <div
@@ -60,7 +49,7 @@ export function HighlightContent({
       </div>
       <div className="flex mt-2  justify-end">
         <div className="mr-2">
-          <Button onClick={addNote}>Agregar</Button>
+          <Button onClick={onSubmit}>Agregar</Button>
         </div>
         <Button variant={"ghost"} onClick={props.cancel}>
           Cancelar

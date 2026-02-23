@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { Note } from "./highlight";
 import { Edit, EllipsisIcon, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,13 +9,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 import { highlightPlugin } from "@react-pdf-viewer/highlight";
+import { Note } from "@/lib/types/note";
 
 interface Props {
   highlightPluginInstance: ReturnType<typeof highlightPlugin>;
+  notes: Note[];
 }
 
-export default function Notes({ highlightPluginInstance }: Props) {
-  const [notes, setNotes] = useState<Note[]>([]);
+export default function Notes({
+  highlightPluginInstance,
+  notes: initialNotes,
+}: Props) {
+  const [notes, setNotes] = useState<Note[]>(initialNotes);
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
   const [editingContent, setEditingContent] = useState("");
   const editingTextareaRef = useRef<HTMLTextAreaElement>(null);

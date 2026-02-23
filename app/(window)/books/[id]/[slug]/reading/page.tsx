@@ -1,5 +1,5 @@
 import { getQueryClient } from "@/components/providers/get-query-client";
-import { findBookById } from "@/lib/actions";
+import { findBookById, findNotesByBookId } from "@/lib/actions";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { notFound, redirect } from "next/navigation";
 import FeatureSection from "./feature-section";
@@ -27,6 +27,10 @@ export default async function BookReadingPage({ params }: Props) {
   await queryClient.prefetchQuery({
     queryKey: ["book", { id: bookId }],
     queryFn: () => findBookById(bookId),
+  });
+  await queryClient.prefetchQuery({
+    queryKey: ["notes", { bookId }],
+    queryFn: () => findNotesByBookId(bookId),
   });
   const state = dehydrate(queryClient);
   return (
