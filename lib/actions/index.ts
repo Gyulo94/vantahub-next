@@ -21,5 +21,6 @@ export {
   findBookById,
   updateBook,
   deleteManyBooks,
+  readingBook,
 } from "./book";
 export { findReviewsAll, createReview, checkReviewExists } from "./review";

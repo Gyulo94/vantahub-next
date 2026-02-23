@@ -73,7 +73,13 @@ export default function HeaderSection({ id }: Props) {
               </tbody>
             </table>
             <div className="flex gap-4 mt-2">
-              <Button variant={"default"} className="w-full max-w-45 text-lg">
+              <Button
+                variant={"default"}
+                className="w-full max-w-45 text-lg"
+                onClick={() =>
+                  window.open(`/books/${id}/${book?.slug}/reading`, "_blank")
+                }
+              >
                 Leer
               </Button>
               <Button variant={"outline"} className="w-full max-w-45 text-lg">

@@ -4,6 +4,7 @@ import {
   deleteManyBooks,
   findBookById,
   findBooksAll,
+  readingBook,
   updateBook,
 } from "../actions";
 import toast from "react-hot-toast";
@@ -79,4 +80,13 @@ export function useDeleteManyBooks() {
     },
   });
   return mutation;
+}
+
+export function useReadingBook(id?: number) {
+  const query = useQuery<void>({
+    queryKey: ["book", "read", { id }],
+    queryFn: () => readingBook(id),
+    enabled: !!id,
+  });
+  return query;
 }

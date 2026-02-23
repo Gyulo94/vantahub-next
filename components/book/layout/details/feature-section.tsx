@@ -8,8 +8,6 @@ interface Props {
 
 export default function FeatureSection({ id }: Props) {
   const { data: book } = useFindBookById(id);
-  console.log(book);
-
   return (
     <div className="tablet:max-w-3xl laptop:max-w-4xl desktop:max-w-7xl mx-auto">
       <div className="prose prose-lg mx-auto py-8">
