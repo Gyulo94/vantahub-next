@@ -5,6 +5,7 @@ import { SERVER_URL } from "../constants";
 import axios from "axios";
 import { auth } from "@/auth";
 import { BookFormSchema } from "../validations";
+import { BookFilter } from "../types";
 
 export async function createBook(value: z.infer<typeof BookFormSchema>) {
   const session = await auth();
@@ -25,7 +26,7 @@ export async function createBook(value: z.infer<typeof BookFormSchema>) {
   }
 }
 
-export async function findBooksAll() {
+export async function findBooksAll(filter?: BookFilter) {
   const session = await auth();
   const token = session?.serverTokens.accessToken;
   try {
@@ -33,6 +34,7 @@ export async function findBooksAll() {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      params: filter,
     });
     return response.data.body;
   } catch (error) {

@@ -19,3 +19,9 @@ export type Book = {
   image: Image | null;
   author: Author;
 };
+
+export type BookFilter = {
+  categoryName?: string;
+  page: number;
+  take: number;
+};

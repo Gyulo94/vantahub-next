@@ -7,13 +7,17 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 import { Book } from "@/lib/types";
+import { PaginationWithLinks } from "../ui/pagination-with-links";
 
-interface Props {
+interface BookListWithCarouselProps {
   books: Book[];
   title?: string;
 }
 
-export default function BookList({ books, title }: Props) {
+export function BookListWithCarousel({
+  books,
+  title,
+}: BookListWithCarouselProps) {
   return (
     <section className="mb-10">
       <div className="flex items-center justify-between pb-5">
@@ -38,6 +42,46 @@ export default function BookList({ books, title }: Props) {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
+    </section>
+  );
+}
+
+interface BookListProps {
+  books: Book[];
+  title: string;
+  page: number;
+  take: number;
+  totalCount: number;
+}
+
+export default function BookList({
+  books,
+  title,
+  page,
+  take,
+  totalCount,
+}: BookListProps) {
+  return (
+    <section className="mb-10">
+      <div className="flex items-center justify-between pb-5">
+        <h2 className="text-2xl font-semibold">{title}</h2>
+      </div>
+      <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-6 gap-4">
+        {books.length === 0 ? (
+          <p className="col-span-full text-center text-gray-500 pt-20">
+            No hay libros en esta categoría
+          </p>
+        ) : (
+          books.map((book) => <BookItem key={book.id} book={book} />)
+        )}
+      </div>
+      <div className="mt-5">
+        <PaginationWithLinks
+          page={page || 1}
+          take={take}
+          totalCount={totalCount}
+        />
+      </div>
     </section>
   );
 }

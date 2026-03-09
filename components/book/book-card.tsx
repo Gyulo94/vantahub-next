@@ -9,7 +9,7 @@ interface Props {
 export default function BookCard({ book }: Props) {
   return (
     <div className="w-45">
-      <Link href={`books/${book.id}/${book?.slug}` || "#"}>
+      <Link href={`/books/${book.id}/${book?.slug}` || "#"}>
         <div className="relative w-45 h-66.5 rounded-md overflow-hidden border shadow-lg">
           <Image
             src={book?.image?.url || ""}
@@ -24,7 +24,7 @@ export default function BookCard({ book }: Props) {
         <div className="flex items-center w-45 mt-5 h-10">
           <Link
             className="text-[15px] font-bold mb-1.75 line-clamp-2"
-            href={`books/${book.id}/${book?.slug}` || "#"}
+            href={`/books/${book.id}/${book?.slug}` || "#"}
           >
             {book?.title}
           </Link>

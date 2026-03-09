@@ -10,7 +10,7 @@ import {
 import toast from "react-hot-toast";
 import { BookFormSchema } from "../validations";
 import z from "zod/v3";
-import { Book } from "../types";
+import { Book, BookFilter } from "../types";
 
 export function useCreateBook() {
   const queryClient = useQueryClient();
@@ -29,10 +29,11 @@ export function useCreateBook() {
   return mutation;
 }
 
-export function useFindBooksAll() {
-  const query = useQuery<Book[]>({
-    queryKey: ["books"],
-    queryFn: findBooksAll,
+export function useFindBooksAll(filter?: BookFilter) {
+  const { categoryName, page, take } = filter || {};
+  const query = useQuery({
+    queryKey: ["books", { categoryName, page, take }],
+    queryFn: () => findBooksAll(filter),
   });
   return query;
 }

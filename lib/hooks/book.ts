@@ -20,3 +20,27 @@ export function useGroupBooksByCategory(books: Book[]): Record<string, Book[]> {
     {} as Record<string, Book[]>,
   );
 }
+
+export function useCategoryRegex(categoryName: string) {
+  let reg = /[`~!@#$%^&*()_|+\-=?;:'"<>\{\}\[\]\\\/]/gim;
+  let spaceOnly = / /gim;
+  return new RegExp(
+    categoryName.toLowerCase().trim().replace(reg, "-").replace(spaceOnly, ""),
+  );
+}
+
+export function useFormatCategoryName(categoryName: string) {
+  let name;
+  if (categoryName.includes("-")) {
+    name = categoryName
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join("-");
+    return decodeURIComponent(name.trim().replace("-", " / "));
+  } else {
+    name = decodeURIComponent(
+      categoryName.charAt(0).toUpperCase() + categoryName.slice(1),
+    );
+    return decodeURIComponent(name.trim());
+  }
+}

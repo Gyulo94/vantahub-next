@@ -32,4 +32,10 @@ export {
   useCreateReview,
   useCheckReviewExists,
 } from "./review";
-export { useFindNotesByBookId, useCreateNote } from "./note";
+export {
+  useFindNotesByBookId,
+  useCreateNote,
+  useFindNoteById,
+  useUpdateNote,
+  useDeleteNote,
+} from "./note";

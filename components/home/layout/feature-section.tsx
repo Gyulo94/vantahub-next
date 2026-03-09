@@ -1,17 +1,19 @@
 "use client";
 
-import BookList from "@/components/book/book-list";
+import { BookListWithCarousel } from "@/components/book/book-list";
 import { useGroupBooksByCategory } from "@/lib/hooks/book";
 import { useFindBooksAll } from "@/lib/queries";
 
 export default function FeatureSection() {
   const { data } = useFindBooksAll();
-  const books = data || [];
+  const books = data?.books || [];
+  console.log(data);
+
   const booksByCategory = useGroupBooksByCategory(books);
   return (
     <>
       {Object.entries(booksByCategory).map(([categoryName, categoryBooks]) => (
-        <BookList
+        <BookListWithCarousel
           key={categoryName}
           title={categoryName}
           books={categoryBooks}

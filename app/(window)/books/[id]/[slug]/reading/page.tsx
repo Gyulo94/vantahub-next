@@ -20,7 +20,7 @@ export default async function BookReadingPage({ params }: Props) {
   }
 
   if (book.slug !== slug) {
-    return redirect(`/books/${book.id}/${book.slug}/read`);
+    return redirect(`/books/${book.id}/${book.slug}/reading`);
   }
 
   const queryClient = getQueryClient();

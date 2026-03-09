@@ -9,6 +9,7 @@ import {
 import toast from "react-hot-toast";
 import { CategoryFormSchema } from "../validations";
 import z from "zod/v3";
+import { Category } from "../types";
 
 export function useCreateCategory() {
   const queryClient = useQueryClient();
@@ -28,7 +29,7 @@ export function useCreateCategory() {
 }
 
 export function useFindCategoriesAll() {
-  const query = useQuery({
+  const query = useQuery<Category[]>({
     queryKey: ["categories"],
     queryFn: findCategoriesAll,
   });

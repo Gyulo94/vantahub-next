@@ -125,3 +125,7 @@
     @apply bg-background text-foreground font-roboto;
   }
 }
+
+.reading-viewer .rpv-default-layout__sidebar.rpv-default-layout__sidebar--opened {
+  width: 20%;
+}

@@ -18,6 +18,7 @@ interface HighlightContentProps extends RenderHighlightContentProps {
 export function HighlightContent({ bookId, ...props }: HighlightContentProps) {
   const [message, setMessage] = useState("");
   const { mutate: createNote } = useCreateNote();
+
   function onSubmit() {
     if (message.trim() !== "") {
       createNote({
