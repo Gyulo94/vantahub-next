@@ -8,7 +8,7 @@ export default async function BooksPage() {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["books"],
-    queryFn: findBooksAll,
+    queryFn: () => findBooksAll(),
   });
 
   const state = dehydrate(queryClient);
