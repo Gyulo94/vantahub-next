@@ -2,12 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.resolve.alias.canvas = false;
-    }
-    config.resolve.alias.encoding = false;
-  },
   experimental: {
     serverActions: {
       bodySizeLimit: "500mb",
@@ -34,7 +28,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  turbopack: {},
 };
 
 export default nextConfig;
